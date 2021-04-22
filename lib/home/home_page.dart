@@ -1,6 +1,5 @@
-import 'package:DevQuiz/core/app_colors.dart';
 import 'package:DevQuiz/home/widgets/appbar/app_bar_widget.dart';
-import 'package:DevQuiz/home/widgets/home_controller.dart';
+import 'file:///C:/Users/Lucas/Documents/nwl_flutter_app/nwl_flutter_app/lib/home/home_controller.dart';
 import 'package:DevQuiz/home/widgets/level_button/level_button_widget.dart';
 import 'package:DevQuiz/home/widgets/quiz_card/quiz_card_widget.dart';
 import 'package:flutter/material.dart';
@@ -48,16 +47,26 @@ class _HomepageState extends State<Homepage> {
                 ),
               ],
             ),
-            SizedBox(height: 16,),
+            SizedBox(
+              height: 16,
+            ),
             Expanded(
-                child: GridView.count(
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              crossAxisCount: 2,
-              children: [
-                QuizCardWidget(),
-              ],
-            ))
+              child: GridView.count(
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                crossAxisCount: 2,
+                children: controller.quizzes!
+                    .map(
+                      (e) => QuizCardWidget(
+                        title: e.title,
+                        percent: e.questionAnswered / e.questions.length,
+                        completed:
+                            "${e.questionAnswered}/${e.questions.length}",
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
           ],
         ),
       ),

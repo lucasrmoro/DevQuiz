@@ -27,7 +27,7 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       appBar: AppBarWidget(user: controller.user!),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.only(left: 18, right: 18),
         child: Column(
           children: [
             SizedBox(height: 24),

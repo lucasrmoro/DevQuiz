@@ -1,10 +1,12 @@
 import 'package:DevQuiz/core/app_colors.dart';
 import 'package:DevQuiz/home/home_state.dart';
 import 'package:DevQuiz/home/widgets/appbar/app_bar_widget.dart';
-import 'file:///C:/Users/Lucas/Documents/nwl_flutter_app/nwl_flutter_app/lib/home/home_controller.dart';
+
 import 'package:DevQuiz/home/widgets/level_button/level_button_widget.dart';
 import 'package:DevQuiz/home/widgets/quiz_card/quiz_card_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'home_controller.dart';
 
 class Homepage extends StatefulWidget {
   Homepage({Key? key}) : super(key: key);

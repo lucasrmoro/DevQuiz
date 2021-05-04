@@ -17,7 +17,7 @@
           "title": "Muito top"
         },
         {
-          "title": "Show de bola"
+          "title": "Show de bola", "isRight": true
         }
       ]
     },
@@ -25,7 +25,7 @@
       "title": "Está curtindo o Flutter?",
       "answers": [
         {
-          "title": "Legal"
+          "title": "Legal", "isRight": true
         },
         {
           "title": "Amando o Flutter"

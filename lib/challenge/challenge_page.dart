@@ -16,6 +16,15 @@ class ChallengePage extends StatefulWidget {
 
 class _ChallengePageState extends State<ChallengePage> {
   final controller = ChallengeController();
+  final pageController = PageController();
+
+  @override
+  void initState() {
+    pageController.addListener(() {
+      controller.currentPage = pageController.page!.toInt() + 1;
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +38,15 @@ class _ChallengePageState extends State<ChallengePage> {
               top: true,
               child: Row(
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: BackButton(),
-                  ),
+                  Expanded(flex: 1, child: BackButton()),
                   Expanded(
                     flex: 15,
-                    child: QuestionIndicatorWidget(
-                      currentPage: controller.currentPage,
-                      length: widget.questions.length,
+                    child: ValueListenableBuilder<int>(
+                      valueListenable: controller.currentPageNotifier,
+                      builder: (context, value, _) => QuestionIndicatorWidget(
+                        currentPage: value,
+                        length: widget.questions.length,
+                      ),
                     ),
                   ),
                 ],
@@ -46,9 +55,14 @@ class _ChallengePageState extends State<ChallengePage> {
           ],
         ),
       ),
-      body: QuizWidget(
-        title: "Oque o Flutter faz em sua totalidade",
-        question: widget.questions[0],
+      body: PageView(
+        physics: NeverScrollableScrollPhysics(),
+        controller: pageController,
+        children: widget.questions
+            .map(
+              (e) => QuizWidget(question: e),
+            )
+            .toList(),
       ),
       bottomNavigationBar: SafeArea(
         bottom: true,
@@ -59,15 +73,20 @@ class _ChallengePageState extends State<ChallengePage> {
             children: [
               Expanded(
                   child: NextButtonWidget.white(
-                label: "Fácil",
-                onTap: () {},
+                label: "Pular",
+                onTap: () {
+                  pageController.nextPage(
+                    duration: Duration(milliseconds: 100),
+                    curve: Curves.linear,
+                  );
+                },
               )),
               SizedBox(width: 8),
-              Expanded(
-                  child: NextButtonWidget.green(
-                label: "Confirmar",
-                onTap: () {},
-              ))
+              // Expanded(
+              //     child: NextButtonWidget.green(
+              //   label: "Confirmar",
+              //   onTap: () {},
+              // ))
             ],
           ),
         ),

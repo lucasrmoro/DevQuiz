@@ -1,4 +1,4 @@
-import 'package:DevQuiz/core/splash/splash_page.dart';
+import 'package:DevQuiz/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 
 class AppWidget extends StatelessWidget {

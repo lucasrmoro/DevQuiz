@@ -73,7 +73,7 @@ class _HomepageState extends State<Homepage> {
                           completed:
                               "${e.questionAnswered} de ${e.questions.length}",
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => ChallengePage(questions: e.questions,)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ChallengePage(questions: e.questions, title: e.title)));
                           },
                         ),
                       )
